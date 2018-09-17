@@ -16,14 +16,5 @@
     "browser": true,
     "node": true
   },
-  "rules": {
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".js", ".jsx"]
-    }],
-    "jsx-a11y/label-has-for": [2, {
-      "required": {
-        "every": ["id"]
-      }
-    }]
-  }
+  "rules": {}
 }

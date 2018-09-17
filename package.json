@@ -3,14 +3,46 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/app-types": "^0.3.2",
+    "@material-ui/core": "^3.1.0",
+    "@material-ui/icons": "^3.0.1",
+    "classnames": "^2.2.6",
+    "firebase": "^5.5.0",
+    "firebase-tools": "^4.2.1",
+    "prop-types": "^15.6.1",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
-    "react-scripts": "1.1.5"
+    "react-hot-loader": "^4.3.8",
+    "react-loadable": "^5.5.0",
+    "react-loader-spinner": "^2.0.6",
+    "react-modal": "^3.5.1",
+    "react-redux": "^5.0.7",
+    "react-responsive-modal": "^3.4.0",
+    "react-router-dom": "^4.3.1",
+    "react-router-transition": "^1.2.1",
+    "react-scripts": "1.1.5",
+    "react-transition-group": "^2.4.0",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "lint-staged",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "format": "eslint src/**/*.{js,jsx} --fix"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.14.2",
+    "redux-devtools-extension": "^2.13.5"
   }
 }

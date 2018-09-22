@@ -1,5 +1,5 @@
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 
-const store = createStore();
+// const store = createStore();
 
-store.dispatch('fo');
+// store.dispatch('fo');

@@ -16,5 +16,9 @@
     "browser": true,
     "node": true
   },
-  "rules": {}
+  "rules": {
+    "react/jsx-filename-extension": [1, {
+      "extension": [".js", ".jsx"]
+    }]
+  }
 }

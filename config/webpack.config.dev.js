@@ -85,7 +85,6 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-
       '@pages': path.resolve(__dirname, '../src/components/pages'),
       '@services': path.resolve(__dirname, '../src/services'),
       '@redux': path.resolve(__dirname, '../src/redux'),
@@ -93,7 +92,6 @@ module.exports = {
       '@hoc': path.resolve(__dirname, '../src/hoc'),
       '@selectors': path.resolve(__dirname, '../src/selectors'),
       '@shared': path.resolve(__dirname, '../src/components/shared-ui'),
-      // '@constants': path.resolve(__dirname, '../src/constants'),
       '@firebase-modules': path.resolve(__dirname, '../src/services/firebase'),
     },
     plugins: [
@@ -117,13 +115,15 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [{
-          options: {
-            formatter: eslintFormatter,
-            eslintPath: require.resolve('eslint'),
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+              eslintPath: require.resolve('eslint'),
+            },
+            loader: require.resolve('eslint-loader'),
           },
-          loader: require.resolve('eslint-loader'),
-        }, ],
+        ],
         include: paths.appSrc,
       },
       {
@@ -183,7 +183,7 @@ module.exports = {
                     autoprefixer({
                       browsers: [
                         '>1%',
-                        'last 4 versions',
+                        'last 6 versions',
                         'Firefox ESR',
                         'not ie < 9', // React doesn't support IE8 anyway
                       ],

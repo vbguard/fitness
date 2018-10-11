@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import withAuthorization from '@hoc/withAuthentication';
 import './App.css';
+import Router from '../../routes';
 
-import BurgerMenu from '../shared-ui/menu';
-
+// eslint-disable-next-line
 class App extends Component {
-  state = {};
-
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title"> Welcome to React </h1>
-          <BurgerMenu />
-        </header>
-        <p className="App-intro">
-          To get started, edit <code> src / App.js </code> and save to reload.
-        </p>
+        <div>
+          <h2>Test for worked Routing</h2>
+        </div>
+        <Router />
       </div>
     );
   }
 }
 
-export default hot(module)(App);
+export default withAuthorization(hot(module)(App));

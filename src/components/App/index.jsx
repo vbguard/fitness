@@ -8,25 +8,40 @@ import { Header } from '../Header';
 import Main from '../Layouts/main';
 import 'normalize.css';
 import styles from './styles.css';
-import './App.css';
-import Router from '../../routes';
-import Menu from '../shared-ui/menu';
-
+// import Router from '../../routes';
+// import Menu from '../shared-ui/menu';
 
 // eslint-disable-next-line
 class App extends Component {
   state = {
-    // userState: false,
+    userState: false,
+  };
+
+  changeUserStatus = () => {
+    const { userState } = this.state;
+    this.setState({
+      userState: !userState,
+    });
   };
 
   render() {
-    // const { userState } = this.state;
+    const { userState } = this.state;
 
     return (
-      <div className={styles.App}>
-        <Header />
+      <div className={styles.app}>
+        <Header userStatus={userState} />
         {/* Route  to <Main /> //home or //cabinet */}
-        <Route path="/" component={Main} />
+        <Route
+          path="/"
+          component={props => <Main userStatus={userState} {...props} />}
+        />
+        <button
+          className={styles.app__button}
+          onClick={this.changeUserStatus}
+          type="button"
+        >
+          Change user status
+        </button>
       </div>
     );
   }

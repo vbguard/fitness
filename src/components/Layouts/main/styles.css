@@ -1,0 +1,16 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./images/bg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 150px;
+  color: #fff;
+  text-align: center;
+}
+
+.main h1 {
+  margin: 0;
+  padding: 0;
+}

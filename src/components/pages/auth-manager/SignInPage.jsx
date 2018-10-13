@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
-import * as routes from '../../../routes';
+// import * as routes from '../../../routes';
 import styles from './styles.css';
 
 class SignInPage extends Component {
@@ -21,7 +21,7 @@ class SignInPage extends Component {
     callbacks: {
       signInSuccessWithAuthResult: () => {
         const { history } = this.props;
-        history.push(routes.HOME);
+        history.push('/');
       },
     },
   };

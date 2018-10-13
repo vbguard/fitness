@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader';
 import withAuthorization from '@hoc/withAuthentication';
 import './App.css';
 import Router from '../../routes';
+import Menu from '../shared-ui/menu';
 
 // eslint-disable-next-line
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
           <h2>Test for worked Routing</h2>
         </div>
         <Router />
+        <Menu />
       </div>
     );
   }

@@ -8,6 +8,10 @@ import { Header } from '../Header';
 import Main from '../Layouts/main';
 import 'normalize.css';
 import styles from './styles.css';
+import './App.css';
+import Router from '../../routes';
+import Menu from '../shared-ui/menu';
+
 
 // eslint-disable-next-line
 class App extends Component {

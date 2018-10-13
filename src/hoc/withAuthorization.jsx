@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../services/firebase';
-import * as routes from '../routes';
+// import * as routes from '../routes';
 
 const withAuthorization = authCondition => WrappedComponent => {
   class WithAuthorization extends Component {
@@ -16,7 +16,7 @@ const withAuthorization = authCondition => WrappedComponent => {
       const { history } = this.props;
       firebase.auth.onAuthStateChanged(authUser => {
         if (!authCondition(authUser)) {
-          history.push(routes.SIGN_IN);
+          history.push('SIGN_IN');
         }
       });
     }

@@ -3,6 +3,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
 
 class BurgerMenu extends Component {
   state = {
@@ -21,7 +22,12 @@ class BurgerMenu extends Component {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
-    const links = ['Page#1', 'Page#2', 'Page#3'];
+    const links = [
+      ['Home page', '/'],
+      ['Account Page', '/account'],
+      // ['Change password', '/password'],
+      ['Sign in', '/SIGN_IN'],
+    ];
 
     return (
       <div>
@@ -42,10 +48,10 @@ class BurgerMenu extends Component {
           {links.map(link => (
             <MenuItem
               key={link}
-              selected={link === 'Page#1'}
+              selected={link === 'Home page'}
               onClick={this.handleClose}
             >
-              {link}
+              <Link to={`${link[1]}`}>{link[0]}</Link>
             </MenuItem>
           ))}
         </Menu>

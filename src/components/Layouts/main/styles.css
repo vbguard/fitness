@@ -1,13 +1,13 @@
 .main {
   width: 100vw;
   height: 100vh;
-  background-image: url(./images/bg.png);
+  /* background-image: url(./images/bg.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  padding-top: 150px;
+  background-size: cover; */
   color: #fff;
   text-align: center;
+  overflow: hidden;
 }
 
 .main h1 {

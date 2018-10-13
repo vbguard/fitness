@@ -1,0 +1,14 @@
+.carouselSize {
+  height: 100vh;
+}
+
+.carouselSize img {
+  min-height: 100vh;
+  min-width: 100vw;
+  object-fit: cover;
+}
+
+.CarouselCaption {
+  bottom: 0;
+  top: 100px;
+}

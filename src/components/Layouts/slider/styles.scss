@@ -12,3 +12,11 @@
   bottom: 0;
   top: 100px;
 }
+
+.text {
+  color: white;
+
+  &:hover {
+    color: greenyellow;
+  }
+}

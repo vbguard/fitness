@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Carousel } from 'react-bootstrap';
 import moment from 'moment';
-import style from './styles.css';
+import style from './styles.scss';
 import image01 from './images/bg.png';
 import image02 from './images/bg2.png';
 
@@ -81,6 +81,11 @@ class Slider extends Component {
           <Carousel.Caption className={style.CarouselCaption}>
             <h3>Second slide label</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p className={style.text}>
+              bal Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Fugit itaque velit ratione error minima molestiae accusamus
+              voluptatem. Hic, quisquam at!
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

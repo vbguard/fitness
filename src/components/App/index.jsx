@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader';
 import withAuthorization from '@hoc/withAuthentication';
 import { Route } from 'react-router-dom';
 import { Header } from '../Header';
+import SignInPage from '../Pages/auth-manager/SignInPage';
 // import Router from '../../routes';
 // import { Main } from '../Layouts/index';
 import Main from '../Layouts/main';
@@ -26,7 +27,7 @@ class App extends Component {
 
   render() {
     const { userState } = this.state;
-
+    console.log(this.props);
     return (
       <div className={styles.app}>
         <Header userStatus={userState} />
@@ -35,6 +36,7 @@ class App extends Component {
           path="/"
           component={props => <Main userStatus={userState} {...props} />}
         />
+        <Route path="/signin" component={SignInPage} />
         <button
           className={styles.app__button}
           onClick={this.changeUserStatus}

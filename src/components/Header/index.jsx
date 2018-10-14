@@ -7,7 +7,7 @@ export class Header extends Component {
   defaultMenu = () => (
     <ul>
       <li>
-        <Link to="/">SignIn</Link>
+        <Link to="/signin">SignIn</Link>
       </li>
       <li>
         <Link to="/">SignUp</Link>

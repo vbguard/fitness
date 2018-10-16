@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
+import Logo from '../shared-ui/logo';
+
 export class Header extends Component {
   defaultMenu = () => (
     <ul>
@@ -35,7 +37,7 @@ export class Header extends Component {
     return (
       <header className={styles.header}>
         <Link to="/">
-          <h1>LOGO</h1>
+          <Logo />
         </Link>
         {!userStatus ? this.defaultMenu() : this.loginedMenu()}
       </header>

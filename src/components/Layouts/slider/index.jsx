@@ -6,6 +6,8 @@ import style from './styles.scss';
 import image01 from './images/bg.png';
 import image02 from './images/bg2.png';
 
+import CustomButton from '../../shared-ui/button';
+
 // Formats digits to two digits (e.g. 05)
 const formatTimerDigit = digit => (digit > 9 ? digit : `0${digit}`);
 
@@ -74,6 +76,7 @@ class Slider extends Component {
               Тренируйся вместе с нами по готовой программе, следи за своими
               результатами и делись достижениями!
             </p>
+            <CustomButton>Вперед</CustomButton>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -86,6 +89,7 @@ class Slider extends Component {
               Fugit itaque velit ratione error minima molestiae accusamus
               voluptatem. Hic, quisquam at!
             </p>
+            <CustomButton>Интересно</CustomButton>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

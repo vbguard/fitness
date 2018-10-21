@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Slider from '../slider';
 import styles from './styles.css';
 // import Home from '../../Pages/home';
+
 // eslint-disable-next-line
 class Main extends Component {
   render() {

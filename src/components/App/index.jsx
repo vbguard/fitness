@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     const { userState } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className={styles.app}>
         <Header userStatus={userState} />

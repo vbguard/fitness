@@ -8,7 +8,7 @@ import SignInPage from '../Pages/auth-manager/SignInPage';
 // import { Main } from '../Layouts/index';
 import Main from '../Layouts/main';
 import 'normalize.css';
-import styles from './styles.css';
+import styles from './styles.scss';
 // import Router from '../../routes';
 // import Menu from '../shared-ui/menu';
 

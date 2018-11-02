@@ -7,7 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import img from '../images/soclink/img.png';
 import SimpleModalWrapped from '../modal';
 import img1 from '../images/sport/1.jpg';
 // import img2 from '../images/sport/2.jpg';

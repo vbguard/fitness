@@ -7,8 +7,20 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import img from '../images/soclink/img.png';
 import SimpleModalWrapped from '../modal';
+import img1 from '../images/sport/1.jpg';
+// import img2 from '../images/sport/2.jpg';
+// import img3 from '../images/sport/3.jpg';
+// import img4 from '../images/sport/4.jpg';
+import img5 from '../images/sport/5o.jpg';
+import img6 from '../images/sport/6v.jpg';
+import img7 from '../images/sport/7pm.jpg';
+import img8 from '../images/sport/8mnpl.jpg';
+import img9 from '../images/sport/9p.jpeg';
+import img10 from '../images/sport/10sls.jpg';
+// import img11 from '../images/sport/11.jpg';
+// import img12 from '../images/sport/12.jpg';
+import img13 from '../images/sport/13planka.png';
 
 // import  './style.css'
 
@@ -53,33 +65,48 @@ function createData(name, numberOfTimes, result, image) {
 }
 
 const rows = [
-  createData('Разминка', '2 мин', '02:04', <SimpleModalWrapped />),
-  createData('Бег на месте', '2 мин', '02:01', <SimpleModalWrapped />),
+  createData('Разминка', '2 мин', '02:04', <SimpleModalWrapped img={img1} />),
+  createData(
+    'Бег на месте',
+    '2 мин',
+    '02:01',
+    <SimpleModalWrapped img={img1} />,
+  ),
   createData(
     'Класическое приседание',
     '20 мин',
     '02:04',
-    <SimpleModalWrapped />,
+    <SimpleModalWrapped img={img1} />,
   ),
-  createData('Отжимание', '10', '02:04', <SimpleModalWrapped />),
-  createData('Выпады', '20', '02:04', <SimpleModalWrapped />),
-  createData('Прыжки с махами', '30', '02:04', <SimpleModalWrapped />),
+  createData('Отжимание', '10', '02:04', <SimpleModalWrapped img={img5} />),
+  createData('Выпады', '20', '02:04', <SimpleModalWrapped img={img6} />),
+  createData(
+    'Прыжки с махами',
+    '30',
+    '02:04',
+    <SimpleModalWrapped img={img7} />,
+  ),
   createData(
     'Махи ногами в положении лежа на спине',
     '30',
     '02:04',
-    <SimpleModalWrapped />,
+    <SimpleModalWrapped img={img8} />,
   ),
-  createData('Прес', '40', '02:04', <SimpleModalWrapped />),
+  createData('Прес', '40', '02:04', <SimpleModalWrapped img={img9} />),
   createData(
     'Скручивание (лежа на спине)',
     '30',
     '02:04',
-    <SimpleModalWrapped />,
+    <SimpleModalWrapped img={img10} />,
   ),
-  createData('Планка', '23с', '02:04', <SimpleModalWrapped />),
-  createData('Бег на месте', '10 мин', '02:04', <SimpleModalWrapped />),
-  createData('Растяжка', '5 мин', '02:04', <SimpleModalWrapped />),
+  createData('Планка', '23с', '02:04', <SimpleModalWrapped img={img13} />),
+  createData(
+    'Бег на месте',
+    '10 мин',
+    '02:04',
+    <SimpleModalWrapped img={img1} />,
+  ),
+  createData('Растяжка', '5 мин', '02:04', <SimpleModalWrapped img={img1} />),
 ];
 
 function CustomizedTable(props) {

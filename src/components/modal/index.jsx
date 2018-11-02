@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import img from '../images/soclink/img.png';
+import img from '../images/miniimg/img.png';
 
 function getModalStyle() {
   const top = 50;
@@ -46,7 +46,7 @@ class SimpleModal extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, photo } = this.props;
     const { open } = this.state;
     return (
       <div>
@@ -66,7 +66,7 @@ class SimpleModal extends Component {
               Text in a modal
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
-              Тут будет какой-то текст
+              <img src={photo} alt="img" />
             </Typography>
             {/* this div hides the button */}
             <div style={style()}>
@@ -81,6 +81,7 @@ class SimpleModal extends Component {
 
 SimpleModal.propTypes = {
   classes: PropTypes.shape.isRequired,
+  photo: PropTypes.shape.isRequired,
 };
 
 // We need an intermediary variable for handling the recursive nesting.

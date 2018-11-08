@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Slider from '../slider';
+import Carousel from '../Slider/Slider';
+import Cabinet from '../Cabinet/Cabinet';
 import styles from './styles.css';
 // import Home from '../../Pages/home';
 
@@ -11,7 +12,7 @@ class Main extends Component {
 
     return (
       <div className={styles.main}>
-        {userStatus ? <h2>UserCabinet See</h2> : <Slider />}
+        {userStatus ? <Cabinet /> : <Carousel />}
       </div>
     );
   }

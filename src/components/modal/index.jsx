@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import img from '../images/soclink/img.png';
+// import img from '../images/soclink/img.png';
 
 function getModalStyle() {
   const top = 50;
@@ -53,7 +53,7 @@ class SimpleModal extends Component {
         {/* Typography gutterBottom If we need the text next to the link */}
         {/* <Typography gutterBottom></Typography> */}
         <Button onClick={this.handleOpen}>
-          <img src={img} alt="" />
+          <img src="" alt="" />
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"

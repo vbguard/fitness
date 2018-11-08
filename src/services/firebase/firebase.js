@@ -1,6 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+import * as firebase from 'firebase';
 
 const config = {
   apiKey: 'AIzaSyDtSlKi28NHeqV_uNjusdcZf707vCe0ThI',
@@ -11,11 +9,10 @@ const config = {
   messagingSenderId: '1085825079554',
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
-}
+firebase.initializeApp(config);
 
-const auth = firebase.auth();
-const db = firebase.database();
+export const auth = firebase.auth();
+export const db = firebase.database();
 
-export { auth, db };
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const twitterProvider = new firebase.auth.TwitterAuthProvider();

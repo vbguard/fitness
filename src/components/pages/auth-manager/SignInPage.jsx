@@ -19,7 +19,7 @@ class SignInPage extends Component {
     callbacks: {
       signInSuccessWithAuthResult: () => {
         const { history } = this.props;
-        history.push('/');
+        history.push('/cabinet');
       },
     },
   };

@@ -19,7 +19,8 @@ const withAuthentication = WrappedComponent =>
 
     render() {
       const { authUser } = this.state;
-
+      console.log('props: ', this.props);
+      console.log('hoc Auth user: ', authUser);
       return (
         <AuthUserContext.Provider value={authUser}>
           <WrappedComponent {...this.props} />

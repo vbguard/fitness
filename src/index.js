@@ -1,15 +1,19 @@
 import React from 'react';
-import { render } from 'react-dom';
-// import { BrowserRouter, Route } from 'react-router-dom';
-// import { Provider } from 'react-redux';
-// import store from './redux/store';
-import './index.css';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import App from './components/App';
+import ReactDOM from 'react-dom';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
 
-const app = (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+import indexRoutes from './routes/index';
+
+const hist = createBrowserHistory();
+ReactDOM.render(
+  <Router history={hist}>
+    <Switch>
+      {' '}
+      {indexRoutes.map((prop, keysw) => (
+        <Route path={prop.path} component={prop.component} key={keysw} />
+      ))}{' '}
+    </Switch>{' '}
+  </Router>,
+  document.getElementById('root'),
 );
-render(app, document.getElementById('root'));

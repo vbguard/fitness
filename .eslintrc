@@ -16,13 +16,6 @@
     "browser": true,
     "node": true
   },
-  // "settings": {
-  //   "import/resolver": {
-  //     "node": {
-  //       "paths": ["src"]
-  //     }
-  //   }
-  // },
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -30,6 +23,7 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "react/no-array-index-key": false
   }
 }

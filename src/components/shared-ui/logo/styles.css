@@ -1,0 +1,15 @@
+.logo {
+  display: flex;
+  align-items: center;
+  color: #ede952;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+}
+
+.img {
+  padding: 8px;
+}
+
+.p {
+  margin: auto 0;
+}

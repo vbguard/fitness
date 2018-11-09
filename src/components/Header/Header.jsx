@@ -1,32 +1,43 @@
+/* eslint-disable react/jsx-no-literals */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+// import PropTypes from 'prop-types'
+import './styles.scss'
 
 import Logo from '../shared-ui/logo'
 
 export class Header extends Component {
   defaultMenu = () => (
-    <ul>
-      <li>
-        <Link to="/signin">SignIn</Link>
+    <ul className="navigation">
+      <li className="navigation__item">
+        <Link className="navigation__link"
+          to="/login"
+        >Вход</Link>
       </li>
-      <li>
-        <Link to="/">SignUp</Link>
+      <li className="navigation__item">
+        <Link className="navigation__link"
+          to="/sign-up"
+        >Регистрация</Link>
       </li>
     </ul>
   );
 
   loginedMenu = () => (
-    <ul>
-      <li>
-        <Link to="/">Cabinet</Link>
+    <ul className="navigation">
+      <li className="navigation__item">
+        <Link className="navigation__link"
+          to="/"
+        >Cabinet</Link>
       </li>
-      <li>
-        <Link to="/">Staistic</Link>
+      <li className="navigation__item">
+        <Link className="navigation__link"
+          to="/"
+        >Staistic</Link>
       </li>
-      <li>
-        <Link to="/">Ratings</Link>
+      <li className="navigation__item">
+        <Link className="navigation__link"
+          to="/"
+        >Ratings</Link>
       </li>
     </ul>
   );
@@ -35,8 +46,10 @@ export class Header extends Component {
     const { userStatus } = this.props
 
     return (
-      <header className={styles.header}>
-        <Link to="/">
+      <header className="header">
+        <Link className="logo-link"
+          to="/"
+        >
           <Logo />
         </Link>
         {!userStatus ? this.defaultMenu() : this.loginedMenu()}
@@ -46,7 +59,7 @@ export class Header extends Component {
 }
 
 Header.propTypes = {
-  userStatus: PropTypes.bool.isRequired,
+
 }
 
 export default Header

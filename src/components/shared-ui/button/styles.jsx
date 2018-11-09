@@ -9,5 +9,5 @@ const styles = () => ({
     fontSize: '1.5rem',
     border: '2px solid #231f20',
   },
-});
-export default styles;
+})
+export default styles

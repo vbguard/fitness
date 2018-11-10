@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
 import CustomButton from '../../components/shared-ui/button/index'
+import {login, getUser, googleLogin} from '../../redux/actions/userActions'
 import './styles.scss'
 
 
@@ -53,51 +55,81 @@ line-height: 1.688;
   line-height: 1.688;
 }
 `
-
-
-
-export class Login extends Component {
-  static propTypes = {
-    prop: PropTypes
-  }
-
+class Login extends Component {
   constructor(props) {
     super(props)
 
-    this.state ={}
+    this.state ={
+      email: '',
+      password: '',
+      error: ''
+    }
   }
 
+  componentWillMount() {
+    this.props.getUser()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('login nextProps: ', nextProps)
+    if (nextProps.user !== null) {
+      this.props.history.push('/cabinet')
+    }
+  }
+
+  submitLogin(event) {
+    event.preventDefault()
+    this.props.login(this.state.email, this.state.password).catch(err => {
+      this.setState({
+        error: err
+      })
+    })
+  }
+
+  handleGoogleLogin = event => {
+    event.preventDefault()
+    this.props.googleLogin()
+  }
   render() {
+    const errStyle = {
+      borderColor: 'red'
+    }
+
     return (
       <Wrapper>
         <LoginWrap>
           <LoginTitle>Вход</LoginTitle>
-          <Form>
-            <Input placeholder="Логин"
+          <Form onSubmit={e => this.submitLogin(e)}>
+            <Input
+              onChange={(event) => this.setState({ email: event.target.value })}
+              placeholder="Логин"
               required
+              style={this.state.error ? errStyle : null}
               type="email"
             />
-            <Input placeholder="Пароль"
+            <Input onChange={event => this.setState({ password: event.target.value })}
+              placeholder="Пароль"
               required
+              style={this.state.error ? errStyle : null}
               type="password"
             />
+            {this.state.error && <div>Your username/password is incorrect</div>}
             <Link className="login__link"
               to="/lost-password"
             >Забили пароль?</Link>
             <CustomButton type="submite">Вход</CustomButton>
           </Form>
+          <button onClick={e => this.handleGoogleLogin(e)}
+            type="button"
+          >Facebook Login</button>
         </LoginWrap>
       </Wrapper>
     )
   }
 }
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = (state) => ({
+  user: state.user
 })
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, { login, getUser, googleLogin })(Login)

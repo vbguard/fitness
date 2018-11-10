@@ -7,7 +7,7 @@ export function getUser() {
   return dispatch => {
     dispatch({
       type: USER_STATUS,
-      payload: true,
+      payload: false,
     })
     auth.onAuthStateChanged(user => {
       dispatch({
@@ -16,7 +16,7 @@ export function getUser() {
       })
       dispatch({
         type: USER_STATUS,
-        payload: false,
+        payload: true,
       })
     })
   }
@@ -29,7 +29,7 @@ export function login(email, password) {
 
 export function logout() {
   // eslint-disable-next-line
-  return dispatch => auth.doSignOut();
+  return dispatch => auth.signOut();
 }
 
 export function createAccount(email, password) {

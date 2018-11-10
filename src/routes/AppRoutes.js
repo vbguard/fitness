@@ -1,7 +1,7 @@
 // core components/views
 import Login from '../Views/Login/Login'
 import SignUp from '../Views/SignUp/SignUp'
-// import Cabinet from '../Views/Cabinet'
+import Cabinet from '../Views/Cabinet/Cabinet'
 // import Static from '../Views/Static'
 // import Result from '../Views/Result'
 // import UserSetting from '../Views/UserSetting'
@@ -20,11 +20,11 @@ const appRoutes = [
     navbarName: 'sign-up',
     component: SignUp
   },
-  // {
-  //   path: '/cabinet',
-  //   navbarName: 'cabinet',
-  //   component: Cabinet
-  // },
+  {
+    path: '/cabinet',
+    navbarName: 'cabinet',
+    component: Cabinet
+  },
   // {
   //   path: '/static',
   //   navbarName: 'static',

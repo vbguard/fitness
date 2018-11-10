@@ -2,13 +2,15 @@
 /* eslint-disable no-console */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
-import store from '../../redux/store'
+// import { Provider } from 'react-redux'
+// import store from '../../redux/store'
 import Header from '../Header/Header'
-
+import { connect } from 'react-redux'
+import { getUser } from '../../redux/actions/userActions'
 import './App.css'
 import appRoutes from '../../routes/AppRoutes'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import  Carousel  from '../../components/Carousel/Carousel'
 
 const switchRoutes = () => {
   return (
@@ -35,7 +37,14 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {}
+  componentDidMount = () => {
+    console.log('app props: ', this.props)
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log('prevProps: ', prevProps)
+    console.log('nextState: ', prevState)
+  }
 
   getRoute() {
     return this.props.location.pathname
@@ -43,23 +52,27 @@ class App extends Component {
 
   render() {
     console.log(this.props.location.pathname)
+    console.log('app props render: ',this.props)
     return (
-      <Provider store={store}>
-        <div className="App">
-          <Header />
-          {this.getRoute() ? (
-            <main>
-              {switchRoutes(this.state)}
-            </main>
-          ) : (
-            <div>
-              <h2>some wrong</h2>
-            </div>
-          )}
-        </div>
-      </Provider>
+      <div className="App">
+        <Header />
+        {this.props.user ? null : <Carousel/>}
+        {this.getRoute() ? (
+          <main>
+            {switchRoutes(this.state)}
+          </main>
+        ) : (
+          <div>
+            <h2>some wrong</h2>
+          </div>
+        )}
+      </div>
     )
   }
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, {getUser})(App)

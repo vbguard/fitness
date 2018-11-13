@@ -1,0 +1,38 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.format {
+  width: 87px;
+  height: 74px;
+  color: #ede952;
+  background: url(../../assets/images/timer_bg.png);
+  font-size: 72px;
+  font-family: 'Ubuntu';
+  line-height: 1;
+}
+
+.dotes {
+  align-self: center;
+  display: block;
+  font-size: 72px;
+  font-family: "Ubuntu";
+  color: rgb(237, 233, 82);
+  padding-bottom: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.dayse {
+  align-self: flex-end;
+  display: block;
+  font-size: 34.271px;
+  font-family: "Ubuntu";
+  color: rgb(237, 233, 82);
+  line-height: 1.25;
+  text-align: left;
+  margin-left: 14px;
+  margin-right: 47px;
+}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
-import CustomButton from '../../components/shared-ui/button/index'
+import CustomButton from '../../components/shared-ui/Button/CustomButton'
 import './styles.scss'
 
 

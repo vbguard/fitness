@@ -50,6 +50,10 @@ class App extends Component {
     return this.props.location.pathname
   }
 
+  redirectToCabinet() {
+    this.props.history.push('/cabinet')
+  }
+
   render() {
     console.log(this.props.location.pathname)
     console.log('app props render: ',this.props)

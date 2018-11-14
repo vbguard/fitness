@@ -2,6 +2,7 @@
 import Login from '../Views/Login/Login'
 import SignUp from '../Views/SignUp/SignUp'
 import Cabinet from '../Views/Cabinet/Cabinet'
+import Home from '../components/Carousel/Carousel'
 // import Static from '../Views/Static'
 // import Result from '../Views/Result'
 // import UserSetting from '../Views/UserSetting'
@@ -24,6 +25,11 @@ const appRoutes = [
     path: '/cabinet',
     navbarName: 'cabinet',
     component: Cabinet
+  },
+  {
+    path: '/home',
+    navbarName: 'Home',
+    component: Home
   },
   // {
   //   path: '/static',
@@ -55,7 +61,7 @@ const appRoutes = [
   //   navbarName: 'rating',
   //   component: Rating
   // },
-
+  // { redirect: true, path: '/', to: '/home', navbarName: 'Redirect' }
 ]
 
 export default appRoutes

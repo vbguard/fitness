@@ -5,7 +5,8 @@ import './styles.scss'
 import styled from 'styled-components'
 import bg from '../../assets/images/user-cabinet-bg.png'
 import { connect } from 'react-redux'
-import { logout } from '../../redux/actions/userActions'
+import { logout, getUser } from '../../redux/actions/userActions'
+import Calendar from '../../components/Calendar/Calendar'
 // import FacebookShare from '../../FacebookShare/FacebookShare'
 // import CustomizedTable from '../../table/index'
 
@@ -35,7 +36,7 @@ const Wrapper = styled.div`
   box-shadow: 0 0 25px 2px #ede952;
   background-color: #231f20;
 `
-const Calendar = styled.div`
+const CalendarWrap = styled.div`
   width: 837px;
   height: 685px;
   box-shadow: 0 0 25px 2px #ede952;
@@ -74,7 +75,9 @@ class Cabinet extends Component {
         {userMainPage ? (
           <MainWrapper>
             <UserInfo />
-            <Calendar />
+            <CalendarWrap>
+              <Calendar/>
+            </CalendarWrap>
           </MainWrapper>
         ) : (
           <Wrapper>
@@ -91,4 +94,4 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 
-export default connect(mapStateToProps, {logout})(Cabinet)
+export default connect(mapStateToProps, {logout, getUser})(Cabinet)

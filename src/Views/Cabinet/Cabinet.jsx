@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import bg from '../../assets/images/user-cabinet-bg.png'
 import { connect } from 'react-redux'
 import { logout, getUser } from '../../redux/actions/userActions'
-import Calendar from '../../components/Calendar/Calendar'
+import CustomCalendar from '../../components/Calendar/Calendar'
 // import FacebookShare from '../../FacebookShare/FacebookShare'
 // import CustomizedTable from '../../table/index'
 
@@ -39,6 +39,7 @@ const Wrapper = styled.div`
 const CalendarWrap = styled.div`
   width: 837px;
   height: 685px;
+  padding: 33px;
   box-shadow: 0 0 25px 2px #ede952;
   background-color: #231f20;
 `
@@ -56,6 +57,7 @@ class Cabinet extends Component {
     super(props)
     this.state = {
       userMainPage: true,
+      user: this.props.user
     }
   }
   componentDidMount = () => {
@@ -68,15 +70,20 @@ class Cabinet extends Component {
   handleSome = () => {};
 
   render() {
-    const { userMainPage } = this.state
-
+    const { userMainPage, user } = this.state
+    console.log(user)
     return (
       <BackgroundImage>
         {userMainPage ? (
           <MainWrapper>
-            <UserInfo />
+            <UserInfo>
+              <img alt="user avatar"
+                src="https://lh5.googleusercontent.com/-GEoP_d8BzVc/AAAAAAAAAAI/AAAAAAABrII/UrwUA76z1cE/photo.jpg"
+              />
+              {user ? (<h3>{user.user.displayName}</h3>) : ''}
+            </UserInfo>
             <CalendarWrap>
-              <Calendar/>
+              <CustomCalendar/>
             </CalendarWrap>
           </MainWrapper>
         ) : (

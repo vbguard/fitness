@@ -85,7 +85,7 @@ export class Login extends Component {
               to="/lost-password"
             >Забили пароль?</Link>
 
-            <CustomButton type="submite">Вход</CustomButton>
+            <CustomButton type="submit">Вход</CustomButton>
           </Form>
         </LoginWrap>
       </Wrapper>

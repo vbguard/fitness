@@ -11,6 +11,7 @@ import './App.css'
 import appRoutes from '../../routes/AppRoutes'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import  Carousel  from '../../components/Carousel/Carousel'
+// import NoPage404 from '../../Views/not-found-page/index'
 
 const switchRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const switchRoutes = () => {
           path={prop.path}
         />
       })}
+      {/* <Route component={NoPage404} /> */}
     </Switch>
   )
 }

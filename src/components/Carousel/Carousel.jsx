@@ -59,7 +59,9 @@ class Carousel extends Component {
             <h3 className="slide-title">Хочешь привести себя в форму? Ведь до Нового года осталось</h3>
             <Countdown date={new Date('Dec 31, 2018 24:00:00').getTime()}/>
             <h3 className="slide-description">Тренируйся вместе с нами по готовой программе, следи за своими результатами и делись достижениями!</h3>
-            <CustomButton>Вперед</CustomButton>
+            <CustomButton path="/register"
+              type="button"
+            >Вперед</CustomButton>
           </div>
         </div>
         <div className="slide-wrap">
@@ -78,7 +80,9 @@ class Carousel extends Component {
               <li className="slide__item"><p className="slide__text">Бег на месте</p></li>
               <li className="slide__item"><p className="slide__text--dots">...</p></li>
             </ul>
-            <CustomButton>Интересно</CustomButton>
+            <CustomButton path="/register"
+              type="button"
+            >Интересно</CustomButton>
           </div>
         </div>
       </Slider>

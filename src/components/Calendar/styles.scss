@@ -4,3 +4,128 @@
   width: 100%;
   height: 100%;
 }
+
+.Calendar-grid {
+  width: 100%;
+  height: 470px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". . . . . . ."". . . . . . ."". . . . . . ."". . . . . . ."". . . . . . ."". . . . . . .";
+}
+
+.Calendar-header {
+  height: 80px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  display: flex;
+  font-size: 20px;
+  flex-direction: column;
+}
+
+.Calendar-header-currentDate {
+  text-transform: capitalize;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.calendar__controlle {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  font-family: "Comfortaa";
+  color: rgb(237, 233, 82);
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.callendar-dayName {
+  &__list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    width: 105.2px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__text {
+    text-align: left;
+    margin: 0;
+    font-size: 14px;
+    font-family: "Ubuntu";
+    color: rgb(255, 255, 255);
+    line-height: 1.929;
+  }
+}
+
+.Calendar-header button {
+  width: 10px;
+  height: 25px;
+  line-height: 25px;
+  border: 0;
+  background: transparent;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+}
+
+.Calendar-grid-item {
+  font-size: 14px;
+  font-family: "Ubuntu";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  text-align: left;
+  border-right: 2px solid rgba(237, 233, 82, 0.2);
+  border-bottom: 2px solid rgba(237, 233, 82, 0.2);
+  padding: 7px;
+
+  &--current .day__wrap {
+    font-size: 14px;
+    font-family: "Ubuntu";
+    color: rgb(35, 31, 32);
+    line-height: 1.2;
+    text-align: center;
+    background-color: yellow;
+    border-radius: 50%;
+  }
+}
+
+.day__wrap {
+  display: inline-block;
+  padding: 3px;
+  text-align: center;
+}
+
+.Calendar-grid-item.nextMonth,
+.Calendar-grid-item.prevMonth {
+  font-size: 14px;
+  font-family: "Ubuntu";
+  color: rgb(88, 89, 91);
+  line-height: 1.2;
+}
+
+.Calendar-grid-item:nth-child(7n+1) {
+  border-left: 2px solid rgba(237, 233, 82, 0.2);
+}
+
+.Calendar-grid-item:nth-child(-n+7) {
+  border-top: 2px solid rgba(237, 233, 82, 0.2);
+}
+
+.cabinet__go--btn {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Roboto";
+  color: rgb(0, 0, 0);
+  line-height: 1.688;
+  text-align: center;
+}

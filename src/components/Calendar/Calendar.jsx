@@ -1,21 +1,89 @@
-import React from 'react'
-import BigCalendar from 'react-big-calendar'
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Calendar } from 'react-calendar-component'
+import cx from 'classnames'
 import moment from 'moment'
-import MyEvents from './events'
+import CustomButton from '../../components/shared-ui/Button/CustomButton'
+import 'moment/locale/nb'
 import './styles.scss'
+import leftBtnBgi from '../../assets/images/arrow-left-small.png'
+import rightBtnBgi from '../../assets/images/arrow-right-small.png'
+class CustomCalendar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: moment()
+    }
+  }
+  handleRenderDay = ({ day, classNames, onPickDate }) => (
+    <div
+      className={cx(
+        'Calendar-grid-item',
+        day.isSame(moment(), 'day') && 'Calendar-grid-item--current',
+        classNames
+      )}
+      key={day.format()}
+      onClick={e => onPickDate(day)}
+    >
+      <div className="day__wrap">
+        {day.format('D')}
+      </div>
+    </div>
+  )
 
-const localizer = BigCalendar.momentLocalizer(moment)
+  handleRenderHeader = ({ date, onPrevMonth, onNextMonth }) => {
+    console.log(date)
+    return (
+      <div className="Calendar-header">
+        <div className="calendar__controlle">
+          <button onClick={onPrevMonth}
+            style={{backgroundImage: `url(${leftBtnBgi})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}
+          />
+          <div className="Calendar-header-currentDate">
+            {date.format('MMMM YYYY')}
+          </div>
+          <button onClick={onNextMonth}
+            style={{backgroundImage: `url(${rightBtnBgi})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}
+          />
+        </div>
+        <ul className="callendar-dayName__list">
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Monday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Tuesday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Wednesday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Thursday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Friday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Saturday'}</p></li>
+          <li className="callendar-dayName__item"><p className="callendar-dayName__text">{'Sunday'}</p></li>
+        </ul>
+      </div>
+    )}
 
-const Calendar = () => (
-  <div className="calendar__wrapper">
-    <BigCalendar
-      endAccessor="end"
-      events={MyEvents}
-      localizer={localizer}
-      startAccessor="start"
-      style={{backgroundColor: 'white'}}
-    />
-  </div>
-)
 
-export default Calendar
+  onChangeMonthSet = (date) => {
+    this.setState({ date })
+  }
+
+  render() {
+    return (
+      <>
+      <Calendar
+        date={this.state.date}
+        onChangeMonth={date => this.onChangeMonthSet(date)}
+        onPickDate={date => console.log(date)}
+        renderDay={this.handleRenderDay}
+        renderHeader={this.handleRenderHeader}
+      />
+      <CustomButton
+        path="/execersice"
+        type="button"
+      >
+        {'Начать тренировку'}</CustomButton>
+      </>
+    )
+  }
+}
+
+export default CustomCalendar

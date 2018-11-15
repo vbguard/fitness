@@ -117,7 +117,9 @@ class Login extends Component {
             <Link className="login__link"
               to="/lost-password"
             >Забили пароль?</Link>
-            <CustomButton type="submite">Вход</CustomButton>
+            <CustomButton path="/cabinet"
+              type="submit"
+            >Вход</CustomButton>
           </Form>
           <button onClick={e => this.handleGoogleLogin(e)}
             type="button"

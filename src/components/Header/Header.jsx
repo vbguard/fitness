@@ -93,7 +93,7 @@ export class Header extends Component {
 
   render() {
     // const { userStatus } = this.state
-    const { user } = this.props
+    const { auth } = this.props
     console.log('header props: ', this.props)
     return (
       <header className="header">
@@ -102,7 +102,7 @@ export class Header extends Component {
         >
           <Logo />
         </NavLink>
-        {!user.isLogined ? this.defaultMenu() : this.loginedMenu()}
+        {!auth.uid ? this.defaultMenu() : this.loginedMenu()}
       </header>
     )
   }

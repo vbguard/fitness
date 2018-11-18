@@ -1,10 +1,11 @@
+/* eslint-disable react/no-set-state */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
-import { googleLogin, facebookLogin, twitterLogin, createAccount} from '../../redux/actions/userActions'
+import { signUp, signInFacebook } from '../../redux/actions/userActions'
 import CustomButton from '../../components/shared-ui/Button/CustomButton'
 import './styles.scss'
 
@@ -65,27 +66,60 @@ export class Login extends Component {
   constructor(props) {
     super(props)
 
-    this.state ={}
+    this.state ={
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.signUp(this.state)
   }
 
   handleFacebookRegister = (event) => {
     event.preventDefault()
-    this.props.facebookLogin()
+    this.props.signInFacebook()
   }
 
   render() {
+    const { auth, authError } = this.props
+    if (auth.uid) return <Redirect to="/" />
     return (
       <Wrapper>
         <LoginWrap>
           <LoginTitle>Регистрация</LoginTitle>
           <Form>
-            <Input placeholder="Логин"
+            <Input id="email"
+              onChange={this.handleChange}
+              placeholder="Логин"
               required
               type="email"
             />
-            <Input placeholder="Пароль"
+            <Input id="password"
+              onChange={this.handleChange}
+              placeholder="Пароль"
               required
               type="password"
+            />
+            <Input id="firstName"
+              onChange={this.handleChange}
+              placeholder="firstName"
+              required
+              type="text"
+            />
+            <Input id="lastName"
+              onChange={this.handleChange}
+              placeholder="lastName"
+              required
+              type="text"
             />
             <Link className="login__link"
               to="/lost-password"
@@ -102,21 +136,26 @@ export class Login extends Component {
               </svg></button>
             <CustomButton type="submit">Вход</CustomButton>
           </Form>
+          { authError ? <p>{authError}</p> : null }
         </LoginWrap>
       </Wrapper>
     )
   }
 }
 
-const mapStateToProps = () => ({
 
-})
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  }
+}
 
-const mapDispatchToProps = {
-  googleLogin,
-  facebookLogin,
-  createAccount,
-  twitterLogin
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (creds) => dispatch(signUp(creds)),
+    signInFacebook: () => dispatch(signInFacebook()),
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

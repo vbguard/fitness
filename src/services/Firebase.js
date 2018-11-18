@@ -16,7 +16,7 @@ const config = {
 firebase.initializeApp(config)
 firebase.firestore()
 firebase.firestore().settings({ timestampsInSnapshots: true })
-firebase.functions()
+// firebase.functions()
 
 export const firebaseConf = firebase
 export const database = firebase.database().ref('posts/')

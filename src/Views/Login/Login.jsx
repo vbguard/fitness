@@ -4,7 +4,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
-import { signIn } from '../../redux/actions/userActions'
+import { signIn, signInFacebook } from '../../redux/actions/userActions'
 import './styles.scss'
 
 
@@ -72,7 +72,7 @@ class Login extends Component {
 
   handleGoogleLogin = event => {
     event.preventDefault()
-    this.props.googleLogin()
+    this.props.signInFacebook()
   }
 
   render() {
@@ -126,7 +126,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (creds) => dispatch(signIn(creds))
+    signIn: (creds) => dispatch(signIn(creds)),
+    signInFacebook: () => dispatch(signInFacebook())
   }
 }
 

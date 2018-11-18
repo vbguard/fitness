@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -23,18 +24,19 @@ class UserInfo extends Component {
 
   render() {
     const { userData } = this.props
+    console.log(this.props)
     return (
       <UserInfoWrap>
-        {!userData ? (
+        {userData ? (
           <div className="user__content">
 
             <div className="avatar__wrap">
               <img alt="user avatar"
                 className="avatar"
-                src={userData.user.photoURL}
+                src={userData.photoURL}
               />
             </div>
-            <h3 className="user__title">{userData.user.displayName}</h3>
+            <h3 className="user__title">{userData.displayName}</h3>
           </div>
         ) : ''}
       </UserInfoWrap>

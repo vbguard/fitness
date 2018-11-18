@@ -57,7 +57,7 @@ class Cabinet extends Component {
   }
   componentDidMount = () => {
     console.log(this.props)
-    if (this.props.user.isLogined ) {
+    if (!this.props.auth ) {
       this.props.history.push('/')
     }
   }
@@ -66,12 +66,13 @@ class Cabinet extends Component {
 
   render() {
     const { auth } = this.props
+    console.log(this.props)
     if (!auth.uid) return <Redirect to="/signin" />
 
     return (
       <BackgroundImage>
         <MainWrapper>
-          <UserInfo />
+          <UserInfo userData={auth} />
           <CalendarWrap>
             <CustomCalendar/>
           </CalendarWrap>

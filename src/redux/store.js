@@ -4,9 +4,9 @@ import thunk from 'redux-thunk'
 import { logger } from 'redux-logger'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import firebaseConf from '../services/Firebase'
+import { firebaseConf} from '../services/Firebase'
 import firebase from 'firebase'
-
+import { env } from '../config'
 import rootReducer from './reducers/index'
 
 
@@ -22,10 +22,10 @@ const middleware = [thunk.withExtraArgument({getFirebase, getFirestore}), logger
 const store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(...middleware),
     reactReduxFirebase(firebaseConf, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}),
-    reduxFirestore(firebase)),
-  ...enhancers
+    reduxFirestore(firebase),
+    applyMiddleware(...middleware),
+    ...enhancers)
 )
 
 export default store

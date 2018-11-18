@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/wrap-multilines
-// import { auth, firestore, googleProvider, twitterProvider, facebookProvider } from '../../services/Firebase'
+import { auth, googleProvider, twitterProvider, facebookProvider } from '../../services/Firebase'
 
 // export const GET_USER = 'get_user'
 // export const USER_STATUS = 'user_status'
@@ -34,6 +34,20 @@ export const signIn = (credentials) => {
       dispatch({ type: 'LOGIN_ERROR', err })
     })
 
+  }
+}
+
+export const signInFacebook = () => {
+  return (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase()
+
+    firebase.auth()
+      .signInWithPopup(facebookProvider)
+      .then(() => {
+        dispatch({ type: 'LOGIN_SUCCESS' })
+      }).catch((err) => {
+        dispatch({ type: 'LOGIN_ERROR', err })
+      })
   }
 }
 

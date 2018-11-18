@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-no-literals */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getUser, logout } from '../../redux/actions/userActions'
+import { signOut } from '../../redux/actions/userActions'
 import './styles.scss'
 
 import Logo from '../shared-ui/logo'
@@ -26,9 +26,9 @@ export class Header extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('login nextProps: ', nextProps)
-    if (nextProps.user.isLogined) {
-      this.setState({userStatus: false})
-    }
+    // if (nextProps.user.isLogined) {
+    //   this.setState({userStatus: true})
+    // }
   }
 
   componentWillUpdate = (nextProps, nextState) => {
@@ -48,18 +48,19 @@ export class Header extends Component {
     console.log('logout: ', event)
     event.preventDefault()
     this.props.logout()
+    this.props.location.push('/')
   }
   defaultMenu = () => (
     <ul className="navigation">
       <li className="navigation__item">
-        <Link className="navigation__link"
+        <NavLink className="navigation__link"
           to="/login"
-        >Вход</Link>
+        >Вход</NavLink>
       </li>
       <li className="navigation__item">
-        <Link className="navigation__link"
+        <NavLink className="navigation__link"
           to="/sign-up"
-        >Регистрация</Link>
+        >Регистрация</NavLink>
       </li>
     </ul>
   );
@@ -73,34 +74,35 @@ export class Header extends Component {
       </li>
       <li className="navigation__item">
         <Link className="navigation__link"
-          to="/"
+          to="/statistic"
         >Staistic</Link>
       </li>
       <li className="navigation__item">
-        <Link className="navigation__link"
-          to="/"
-        >Ratings</Link>
+        <NavLink className="navigation__link"
+          to="/rating"
+        >Ratings</NavLink>
       </li>
       <li className="navigation__item">
-        <Link className="navigation__link"
-          onClick={this.logOut}
+        <a className="navigation__link"
+          onClick={this.props.signOut}
           to="/"
-        >Вийти</Link>
+        >Вийти</a>
       </li>
     </ul>
   );
 
   render() {
-    const { userStatus } = this.state
+    // const { userStatus } = this.state
+    const { user } = this.props
     console.log('header props: ', this.props)
     return (
       <header className="header">
-        <Link className="logo-link"
+        <NavLink className="logo-link"
           to="/"
         >
           <Logo />
-        </Link>
-        {!userStatus ? this.defaultMenu() : this.loginedMenu()}
+        </NavLink>
+        {!user.isLogined ? this.defaultMenu() : this.loginedMenu()}
       </header>
     )
   }
@@ -110,8 +112,18 @@ Header.propTypes = {
   logout: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return{
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  }
+}
 
-export default connect(mapStateToProps, { getUser, logout })(Header)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

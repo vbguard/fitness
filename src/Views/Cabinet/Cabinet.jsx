@@ -5,8 +5,11 @@ import './styles.scss'
 import styled from 'styled-components'
 import bg from '../../assets/images/user-cabinet-bg.png'
 import { connect } from 'react-redux'
-import { logout, getUser } from '../../redux/actions/userActions'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
 import CustomCalendar from '../../components/Calendar/Calendar'
+import UserInfo from '../../components/UserInfo/UserInfo'
 // import FacebookShare from '../../FacebookShare/FacebookShare'
 // import CustomizedTable from '../../table/index'
 
@@ -43,14 +46,6 @@ const CalendarWrap = styled.div`
   box-shadow: 0 0 25px 2px #ede952;
   background-color: #231f20;
 `
-const UserInfo = styled.div`
-  width: 229px;
-  height: 285px;
-  box-shadow: 0 0 25px 2px #ede952;
-  background-color: #231f20;
-  margin-right: 30px;
-  align-self: flex-start;
-`
 
 class Cabinet extends Component {
   constructor(props) {
@@ -62,43 +57,41 @@ class Cabinet extends Component {
   }
   componentDidMount = () => {
     console.log(this.props)
-    if (this.props.user === null ) {
-      this.props.history.push('/login')
+    if (this.props.user.isLogined ) {
+      this.props.history.push('/')
     }
   }
 
   handleSome = () => {};
 
   render() {
-    const { userMainPage, user } = this.state
-    console.log(user)
+    const { auth } = this.props
+    if (!auth.uid) return <Redirect to="/signin" />
+
     return (
       <BackgroundImage>
-        {userMainPage ? (
-          <MainWrapper>
-            <UserInfo>
-              <img alt="user avatar"
-                src="https://lh5.googleusercontent.com/-GEoP_d8BzVc/AAAAAAAAAAI/AAAAAAABrII/UrwUA76z1cE/photo.jpg"
-              />
-              {user ? (<h3>{user.user.displayName}</h3>) : ''}
-            </UserInfo>
-            <CalendarWrap>
-              <CustomCalendar/>
-            </CalendarWrap>
-          </MainWrapper>
-        ) : (
-          <Wrapper>
-            <p>Resultat</p>
-
-          </Wrapper>
-        )}
+        <MainWrapper>
+          <UserInfo />
+          <CalendarWrap>
+            <CustomCalendar/>
+          </CalendarWrap>
+        </MainWrapper>
       </BackgroundImage>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    auth: state.firebase.auth,
 
-export default connect(mapStateToProps, {logout, getUser})(Cabinet)
+  }
+}
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'execersice' },
+  ])
+)(Cabinet)

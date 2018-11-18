@@ -1,12 +1,10 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
-import CustomButton from '../../components/shared-ui/Button/CustomButton'
-import {login, getUser, googleLogin} from '../../redux/actions/userActions'
+import { signIn } from '../../redux/actions/userActions'
 import './styles.scss'
 
 
@@ -66,35 +64,23 @@ class Login extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.getUser()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('login nextProps: ', nextProps)
-    if (nextProps.user !== null) {
-      this.props.history.push('/cabinet')
-    }
-  }
-
   submitLogin(event) {
     event.preventDefault()
-    this.props.login(this.state.email, this.state.password).catch(err => {
-      this.setState({
-        error: err
-      })
-    })
+    const {email, password} = this.state
+    this.props.signIn({ email, password})
   }
 
   handleGoogleLogin = event => {
     event.preventDefault()
     this.props.googleLogin()
   }
+
   render() {
     const errStyle = {
       borderColor: 'red'
     }
-
+    const { auth, authError } = this.props
+    if (auth.uid) return <Redirect to="/" />
     return (
       <Wrapper>
         <LoginWrap>
@@ -114,24 +100,34 @@ class Login extends Component {
               type="password"
             />
             {this.state.error && <div>Your username/password is incorrect</div>}
-            <Link className="login__link"
+            <NavLink className="login__link"
               to="/lost-password"
-            >Забили пароль?</Link>
-            <CustomButton path="/cabinet"
+            >Забили пароль?</NavLink>
+            <button className="carousel__link"
               type="submit"
-            >Вход</CustomButton>
+            >Вход</button>
           </Form>
           <button onClick={e => this.handleGoogleLogin(e)}
             type="button"
           >Facebook Login</button>
+          { authError ? <p>{authError}</p> : null }
         </LoginWrap>
       </Wrapper>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
+const mapStateToProps = (state) => {
+  return{
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  }
+}
 
-export default connect(mapStateToProps, { login, getUser, googleLogin })(Login)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

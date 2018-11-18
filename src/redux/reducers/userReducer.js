@@ -1,13 +1,43 @@
-import { GET_USER } from '../actions/userActions'
+/* eslint-disable no-console */
+// import { GET_USER } from '../actions/userActions'
+const initState = {
+  authError: null
+}
 
-export default function(state = {}, action) {
-  switch (action.type) {
-    case GET_USER:
+export default function(state = initState, action) {
+  switch(action.type){
+    case 'LOGIN_ERROR':
+      console.log('login error')
       return {
         ...state,
-        user: action.payload,
-        isLogined: true
+        authError: 'Login failed'
       }
+
+    case 'LOGIN_SUCCESS':
+      console.log('login success')
+      return {
+        ...state,
+        authError: null
+      }
+
+    case 'SIGNOUT_SUCCESS':
+      console.log('signout success')
+      return state
+
+    case 'SIGNUP_SUCCESS':
+      console.log('signup success')
+      return {
+        ...state,
+        authError: null
+      }
+
+    case 'SIGNUP_ERROR':
+      console.log('signup error')
+      return {
+        ...state,
+        authError: action.err.message
+      }
+
     default:
       return state
   }

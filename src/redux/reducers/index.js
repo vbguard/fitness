@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
-import { reducer as formReducer } from 'redux-form'
 import UserReducer from './userReducer'
+import { firestoreReducer } from 'redux-firestore'
+import { firebaseReducer } from 'react-redux-firebase'
 // import LoadingReducer from './LoadingReducer';
 
 const rootReducer = combineReducers({
-  form: formReducer,
-  user: UserReducer,
+  auth: UserReducer,
+  firestore: firestoreReducer,
+  firebase: firebaseReducer
 })
 
 export default rootReducer

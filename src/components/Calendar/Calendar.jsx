@@ -2,11 +2,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Calendar } from 'react-calendar-component'
 import cx from 'classnames'
 import moment from 'moment'
-import CustomButton from '../../components/shared-ui/Button/CustomButton'
 import 'moment/locale/nb'
 import './styles.scss'
 import leftBtnBgi from '../../assets/images/arrow-left-small.png'
@@ -76,11 +75,11 @@ class CustomCalendar extends Component {
         renderDay={this.handleRenderDay}
         renderHeader={this.handleRenderHeader}
       />
-      <CustomButton
-        path="/execersice"
-        type="button"
+      <NavLink
+        className="carosuel__link"
+        to="/execersice"
       >
-        {'Начать тренировку'}</CustomButton>
+        {'Начать тренировку'}</NavLink>
       </>
     )
   }

@@ -2,11 +2,11 @@
 import Login from '../Views/Login/Login'
 import SignUp from '../Views/SignUp/SignUp'
 import Cabinet from '../Views/Cabinet/Cabinet'
-import Home from '../components/Carousel/Carousel'
+import Home from '../Views/Home/Home'
 // import Static from '../Views/Static'
 // import Result from '../Views/Result'
 // import UserSetting from '../Views/UserSetting'
-// import Exercises from '../Views/Exercises'
+import Execersice from '../Views/Execersice/Execersice'
 // import LostPassword from '../Views/LostPassword'
 // import Rating from '../Views/Rating'
 
@@ -27,9 +27,9 @@ const appRoutes = [
     component: Cabinet
   },
   {
-    path: '/home',
-    navbarName: 'Home',
-    component: Home
+    path: '/execersice',
+    navbarName: 'execersice',
+    component: Execersice
   },
   // {
   //   path: '/static',
@@ -46,11 +46,7 @@ const appRoutes = [
   //   navbarName: 'user-setting',
   //   component: UserSetting
   // },
-  // {
-  //   path: '/exercises',
-  //   navbarName: 'exercises',
-  //   component: Exercises
-  // },
+
   // {
   //   path: '/lost-password',
   //   navbarName: 'lost-password',
@@ -61,6 +57,11 @@ const appRoutes = [
   //   navbarName: 'rating',
   //   component: Rating
   // },
+  {
+    path: '/',
+    navbarName: 'Home',
+    component: Home
+  },
   // { redirect: true, path: '/', to: '/home', navbarName: 'Redirect' }
 ]
 

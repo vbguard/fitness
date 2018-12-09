@@ -1,18 +1,18 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-set-state */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import styled from 'styled-components'
 import { signUp, signInFacebook } from '../../redux/actions/userActions'
-import CustomButton from '../../components/shared-ui/Button/CustomButton'
 import './styles.scss'
 
 
-const LoginWrap = styled.div`
+const RegisterWrap = styled.div`
   width: 493px;
-  height: 397px;
+  height: 564px;
   background-color: #231f20;
   padding-top: 32px;
   padding-left: 50px;
@@ -21,7 +21,7 @@ const LoginWrap = styled.div`
   box-shadow: 0 0 20px 0 #ede952;
 `
 
-const LoginTitle = styled.h2`
+const RegisterTitle = styled.h2`
   font-size: 26px;
   font-family: "Comfortaa";
   color: rgb(237, 233, 82);
@@ -79,8 +79,10 @@ export class Login extends Component {
       [e.target.id]: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault()
+    console.log('submite')
     this.props.signUp(this.state)
   }
 
@@ -94,50 +96,49 @@ export class Login extends Component {
     if (auth.uid) return <Redirect to="/" />
     return (
       <Wrapper>
-        <LoginWrap>
-          <LoginTitle>Регистрация</LoginTitle>
-          <Form>
+        <RegisterWrap>
+          <RegisterTitle>Регистрация</RegisterTitle>
+          <Form onSubmit={e => this.handleSubmit(e)}>
             <Input id="email"
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e)}
               placeholder="Логин"
               required
               type="email"
             />
             <Input id="password"
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e)}
               placeholder="Пароль"
               required
               type="password"
             />
             <Input id="firstName"
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e)}
               placeholder="firstName"
               required
               type="text"
             />
             <Input id="lastName"
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e)}
               placeholder="lastName"
               required
               type="text"
             />
-            <Link className="login__link"
-              to="/lost-password"
-            >Забили пароль?</Link>
-            <button onClick={e => this.handleFacebookRegister(e)}
-              type="button"
-            >
-              <svg style={{width: '24px', height: '24px'}}
-                viewBox="0 0 24 24"
-              >
-                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M18,5H15.5A3.5,3.5 0 0,0 12,8.5V11H10V14H12V21H15V14H18V11H15V9A1,1 0 0,1 16,8H18V5Z"
-                  fill="#000000"
-                />
-              </svg></button>
-            <CustomButton type="submit">Вход</CustomButton>
+            { authError ? <p>{authError}</p> : null }
+            <button className="carousel__link"
+              type="submit"
+            >Регистрация</button>
           </Form>
-          { authError ? <p>{authError}</p> : null }
-        </LoginWrap>
+          <button onClick={e => this.handleFacebookRegister(e)}
+            type="button"
+          >
+            <svg style={{width: '24px', height: '24px'}}
+              viewBox="0 0 24 24"
+            >
+              <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M18,5H15.5A3.5,3.5 0 0,0 12,8.5V11H10V14H12V21H15V14H18V11H15V9A1,1 0 0,1 16,8H18V5Z"
+                fill="#000000"
+              />
+            </svg></button>
+        </RegisterWrap>
       </Wrapper>
     )
   }

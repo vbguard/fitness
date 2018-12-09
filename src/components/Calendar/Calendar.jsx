@@ -68,18 +68,19 @@ class CustomCalendar extends Component {
   render() {
     return (
       <>
-      <Calendar
-        date={this.state.date}
-        onChangeMonth={date => this.onChangeMonthSet(date)}
-        onPickDate={date => console.log(date)}
-        renderDay={this.handleRenderDay}
-        renderHeader={this.handleRenderHeader}
-      />
-      <NavLink
-        className="carosuel__link"
-        to="/execersice"
-      >
-        {'Начать тренировку'}</NavLink>
+        <Calendar
+          date={this.state.date}
+          onChangeMonth={date => this.onChangeMonthSet(date)}
+          onPickDate={date => console.log(date)}
+          renderDay={this.handleRenderDay}
+          renderHeader={this.handleRenderHeader}
+        />
+        <button className="carosuel__link"
+          onClick={e => this.props.handleIsCalendar(e)}
+          type="button"
+        >
+          {'Начать тренировку'}
+        </button>
       </>
     )
   }

@@ -9,6 +9,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import CustomCalendar from '../../components/Calendar/Calendar'
+import Execersice from '../Execersice/Execersice'
 import UserInfo from '../../components/UserInfo/UserInfo'
 // import FacebookShare from '../../FacebookShare/FacebookShare'
 // import CustomizedTable from '../../table/index'
@@ -52,7 +53,8 @@ class Cabinet extends Component {
     super(props)
     this.state = {
       userMainPage: true,
-      user: this.props.user
+      user: this.props.user,
+      isCalendar: true
     }
   }
   componentDidMount = () => {
@@ -62,19 +64,28 @@ class Cabinet extends Component {
     }
   }
 
-  handleSome = () => {};
+  handleIsCalendar = (e) => {
+    e.preventDefault()
+
+    this.setState({
+      isCalendar: false
+    })
+  };
 
   render() {
+    const { isCalendar } = this.state
     const { auth } = this.props
     console.log(this.props)
-    if (!auth.uid) return <Redirect to="/signin" />
+    if (!auth.uid) return <Redirect to="/" />
 
     return (
       <BackgroundImage>
         <MainWrapper>
           <UserInfo userData={auth} />
           <CalendarWrap>
-            <CustomCalendar/>
+            {isCalendar ?
+              <CustomCalendar handleIsCalendar={this.handleIsCalendar}/> : <Execersice />
+            }
           </CalendarWrap>
         </MainWrapper>
       </BackgroundImage>
@@ -86,13 +97,17 @@ const mapStateToProps = (state) => {
   // console.log(state);
   return {
     auth: state.firebase.auth,
-
+    calendar: state.firestore.data.calendar
   }
 }
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'execersice' },
-  ])
+  firestoreConnect((props) => {
+    console.log(props)
+    return ([
+      { collection: 'users', doc: props.auth.uid },
+      {collection: 'execersice'}
+    ])
+  })
 )(Cabinet)

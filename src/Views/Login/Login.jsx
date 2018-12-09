@@ -99,7 +99,7 @@ class Login extends Component {
               style={this.state.error ? errStyle : null}
               type="password"
             />
-            {this.state.error && <div>Your username/password is incorrect</div>}
+            {authError && <div>Your username/password is incorrect</div>}
             <NavLink className="login__link"
               to="/lost-password"
             >Забили пароль?</NavLink>
@@ -110,19 +110,17 @@ class Login extends Component {
           <button onClick={e => this.handleGoogleLogin(e)}
             type="button"
           >Facebook Login</button>
-          { authError ? <p>{authError}</p> : null }
         </LoginWrap>
       </Wrapper>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return{
-    authError: state.auth.authError,
-    auth: state.firebase.auth
-  }
-}
+const mapStateToProps = (state) => ({
+  authError: state.auth.authError,
+  auth: state.firebase.auth
+})
+
 
 const mapDispatchToProps = (dispatch) => {
   return {

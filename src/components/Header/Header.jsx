@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-literals */
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { signOut } from '../../redux/actions/userActions'
 import './styles.scss'
@@ -24,32 +24,13 @@ export class Header extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('login nextProps: ', nextProps)
-    // if (nextProps.user.isLogined) {
-    //   this.setState({userStatus: true})
-    // }
-  }
-
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log('nextProps: ', nextProps)
-    console.log('nextState: ', nextState)
-    // if (nextProps.user !== null) {
-    //   return this.setState({userStatus: true})
-    // }
-  }
-
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log('prevProps: ', prevProps)
-    console.log('nextState: ', prevState)
-  }
-
   logOut = event => {
     console.log('logout: ', event)
     event.preventDefault()
     this.props.logout()
     this.props.location.push('/')
   }
+  
   defaultMenu = () => (
     <ul className="navigation">
       <li className="navigation__item">
@@ -70,23 +51,23 @@ export class Header extends Component {
       <li className="navigation__item">
         <Link className="navigation__link"
           to="/cabinet"
-        >Cabinet</Link>
+        >Кабинет</Link>
       </li>
       <li className="navigation__item">
         <Link className="navigation__link"
           to="/statistic"
-        >Staistic</Link>
+        >Статистика</Link>
       </li>
       <li className="navigation__item">
         <NavLink className="navigation__link"
           to="/rating"
-        >Ratings</NavLink>
+        >Рейтинг</NavLink>
       </li>
       <li className="navigation__item">
         <a className="navigation__link"
           onClick={this.props.signOut}
           to="/"
-        >Вийти</a>
+        >Выйти</a>
       </li>
     </ul>
   );
@@ -109,7 +90,7 @@ export class Header extends Component {
 }
 
 Header.propTypes = {
-  logout: PropTypes.func.isRequired
+
 }
 
 const mapStateToProps = (state) => {

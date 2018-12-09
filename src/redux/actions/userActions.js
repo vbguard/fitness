@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line react/wrap-multilines
 import { auth, googleProvider, twitterProvider, facebookProvider } from '../../services/Firebase'
 
@@ -38,13 +39,26 @@ export const signIn = (credentials) => {
 }
 
 export const signInFacebook = () => {
-  return (dispatch, getState, {getFirebase}) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
     const firebase = getFirebase()
+    const firestore = getFirestore()
 
     firebase.auth()
       .signInWithPopup(facebookProvider)
-      .then(() => {
+      .then((data) => {
         dispatch({ type: 'LOGIN_SUCCESS' })
+        return data
+
+      }).then( (data) => {
+        if (data.additionalUserInfo.isNewUser) {
+          console.log(data.additionalUserInfo.isNewUser)
+          firestore.collection('users').doc(data.user.uid).set({
+            firstName: data.additionalUserInfo.profile.first_name,
+            lastName: data.additionalUserInfo.profile.last_name,
+            initials: data.additionalUserInfo.profile.first_name[0] + data.additionalUserInfo.profile.last_name[0],
+            calendar: []
+          })
+        }
       }).catch((err) => {
         dispatch({ type: 'LOGIN_ERROR', err })
       })
@@ -70,10 +84,13 @@ export const signUp = (newUser) => {
       newUser.email,
       newUser.password
     ).then(resp => {
+      console.log(resp)
+
       return firestore.collection('users').doc(resp.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
-        initials: newUser.firstName[0] + newUser.lastName[0]
+        initials: newUser.firstName[0] + newUser.lastName[0],
+        calendar: []
       })
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' })
